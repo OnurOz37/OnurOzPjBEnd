@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des offres
+{% endblock %}
+
+{% block body %}
+    {{ dump(app.user) }}
+    {{ dump(offers) }}
+
+    {% for o in offers %}
+        {% if app.user.company.id == o.getFkCompany.id %}
+            {{ dump(o) }}
+
+        {% endif %}
+    {% endfor %}
+{% endblock %}

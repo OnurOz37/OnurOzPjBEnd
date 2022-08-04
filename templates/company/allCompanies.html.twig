@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon Entreprise {% endblock %}
+
+
+{% block body %}
+
+    {% include 'partials/_flashes.html.twig' %}
+
+    {% for c in company %}
+
+        {% if app.user.id == c.getFkUser.id %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+
+                                            <form class="form-horizontal pull-right">
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>Name</th>
+                                            <th>City</th>
+                                            <th>Website</th>
+                                            <th>Phone</th>
+                                            <th>
+                                                Liste des offres
+                                            </th>
+                                            <th>Logo</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <ul class="action-list">
+                                                    <li><a href="{{ path('edit_company', {'id':c.id}) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
+                                                    <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
+                                                </ul>
+                                            </td>
+                                            <td>{{ c.name }}</td>
+                                            <td>{{ c.city }}</td>
+                                            <td>{{ c.website }}</td>
+                                            <td>{{ c.phone }}</td>
+                                            <td>
+
+                                                <a href="{{ path('my_offers') }}">Liste</a>
+
+                                            </td>
+                                            <td><img src="{{ asset('/uploads/') ~ c.logo }}" alt="" class="company-logo"></td>
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+
+    {% endfor %}
+
+    <script src="https://use.fontawesome.com/13007f76c9.js"></script>
+
+
+
+{% endblock %}

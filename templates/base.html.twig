@@ -2,18 +2,64 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>ECF Back |{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/css/boutique.css')}}" rel="stylesheet">
+{#        {% block stylesheets %}#}
+{#            <link rel="stylesheet" href="{{ asset('/assets/style.css') }}">#}
+{#        {% endblock %}#}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+
         {% endblock %}
+        <link href="{{asset('assets/css/carousel.css')}}" rel="stylesheet">
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="{{ path('home') }}">Projet Oz</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('home') }}">Annonces</a>
+                    <li class="nav-item active">
+
+                        {% if app.user %}
+
+                                <a class="nav-link" href="{{ path('show_company', {'id':app.user.company.id }) }}">Mon Entreprise</a>
+
+
+                        {% endif %}
+
+
+{#                    <li class="nav-item active">#}
+{#                        <a class="nav-link" href="#">Candidatures</a>#}
+
+                </ul>
+                <div class="navbar-item-custom">
+                    {% if app.user %}
+                        <a href="{{ path('account') }}">Mon Compte <small>({{ app.user.firstname }})</small></a>  |  <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+                    {% else %}
+
+                        <a href="{{ path('app_login') }}">Connexion Entreprise </a>  |  <a href="{{ path('inscription') }}"> Inscription Entreprise</a>
+                    {% endif %}
+                </div>
+
+
+            </div>
+        </nav>
+    </header>
+
+
+
     </body>
+        {% block body %}
+            {% include 'partials/_flashes.html.twig' %}
+        {% endblock %}
+
 </html>

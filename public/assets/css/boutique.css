@@ -1,0 +1,48 @@
+.navbar-item-custom a, .navbar-item-custom{
+    color: white;
+}
+.footer-custom{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #dfeaff;
+    padding-top: 25px;
+}
+.product-item h5{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin-bottom: 1px;
+}
+.product-item{
+    margin-top: 50px;
+}
+.product-item .product-subtitle{
+    font-size: 1.4rem   ;
+    display: block;
+    margin-bottom: 10px;
+}
+.product-item .product-price{
+    font-size: 14px;
+    font-weight: bold;
+
+}
+.product-container{
+    margin-bottom: 10rem;
+}
+
+.company-logo{
+
+    width: 50%;
+    height: auto;
+}
+
+.carousel-item {
+    height: 100vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

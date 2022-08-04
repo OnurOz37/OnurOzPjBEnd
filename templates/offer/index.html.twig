@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Les annonces{% endblock %}
+
+{% block body %}
+    {% for type, messages in app.flashes %}
+        <div class="alert alert-{{ type }}">
+            {% for message in messages %}
+
+                {{ message }}
+            {% endfor %}
+        </div>
+
+
+
+    {% endfor %}
+    <br>
+<div class="container">
+    <br>
+    {{ form(form) }}
+</div>
+
+{% endblock %}

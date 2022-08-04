@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon Compte{% endblock %}
+
+{% block body %}
+    {% include 'partials/_flashes.html.twig' %}
+
+    <div class="container">
+        <br>
+
+        {% if is_granted ("ROLE_ADMIN") %}
+            <a href="{{ path('admin') }}" class="badge badge-info">Accéder au back office réservé a l'administrateur</a>
+
+        {% endif %}
+        <br>
+        {% if app.user %}
+            <hr>
+            <p>Bienvenue {{ app.user.firstname }}</p>
+
+
+        {% endif %}
+        <br>
+        <a href="{{ path('edit_account', {'id':user.id}) }}" class="badge badge-dark">Modifier mon compte</a>
+        <br>
+        <hr>
+
+
+        {% if user.company == null %}
+
+            <a href="{{ path('company', {'id':user.id}) }}">Ajouter une entreprise</a>
+
+
+        {% else %}
+            {% for c in company %}
+                {% if c.getFkUser().id == user.id %}
+                    <table class="table table-striped table-dark">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nom Entreprise</th>
+                            <th scope="col">Ville</th>
+                            <th scope="col">Plus de détails</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.city }}</td>
+                            <td><a href="{{ path('show_company', {'id': c.id}) }}" class="badge badge-info">Détail</a></td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endif %}
+
+        <br>
+
+        <hr>
+        <br>
+        <a href="{{ path('my_offers') }}"  class="badge badge-success"> Mes annonces</a>
+    </div>
+
+
+{% endblock %}

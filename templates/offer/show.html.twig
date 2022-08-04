@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="span5">
+                <table class="table table-striped table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Type de contrat</th>
+                        <th>Description</th>
+                        <th>Publié le</th>
+                        <th>Site web</th>
+                        <th>Profil recherché</th>
+                        <th>Compétences nécessaires</th>
+                        <th>Descriptif du poste</th>
+                        <th>Missions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ offer.title }}</td>
+                        <td>{{ offer.type }}</td>
+                        <td>{{ offer.description }}</td>
+                        <td>{{ offer.postedAt.format('d/m/Y') }}</td>
+                        <td>{{ offer.website }}</td>
+                        <td>{{ offer.getRequirementsItem()}}</td>
+                        <td>{{ offer.getRequirementsContent() }}</td>
+                        <td>{{ offer.getRoleItem() }}</td>
+                        <td>{{ offer.getRoleContent() }}</td>
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

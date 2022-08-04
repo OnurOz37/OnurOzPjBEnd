@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.type) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.website) }}
+    {{ form_row(form.requirements_item) }}
+    {{ form_row(form.requirements_content) }}
+    {{ form_row(form.role_item) }}
+    {{ form_row(form.role_content) }}
+
+    {{ form_row(form.submit , {'label': 'Modifier'} ) }}
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <section class="section_register section_background-linear">
+        <div class="container">
+            <h2 class="center center">Formulaire</h2>
+            <div class="search_form">
+                <div class="form_profile-pic">
+
+                </div>
+                <div class="form_text">
+                    {{ form_start(form, {'attr':{'novalidate': 'novalidate'}}) }}
+                    {{ form_row(form.firstname) }}
+                    {{ form_row(form.lastname) }}
+                    {{ form_row(form.login) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.password) }}
+                    {{ form_row(form.company.name) }}
+                    {{ form_row(form.company.logo) }}
+                    {{ form_row(form.company.logoColor) }}
+                    {{ form_row(form.company.city) }}
+                    {{ form_row(form.company.website) }}
+                    {{ form_row(form.company.phone) }}
+                    {{ form_row(form.company.submit, {'label':"S'inscrire"}) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}

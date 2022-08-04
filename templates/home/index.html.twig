@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} DevJobs{% endblock %}
+
+{% block body %}
+
+
+    <br>
+    <div class="container">
+        {% include 'partials/_flashes.html.twig' %}
+        <h2>Bienvenue chez DevJobs</h2>
+
+        {% if app.user is null %}
+            <a href="{{ path('app_login') }}" class="badge badge-primary">Se connecter</a>
+            <br>
+            <a href="{{ path('inscription') }}" class="badge badge-danger">S'inscrire</a>
+        {% endif %}
+
+
+        {% if app.user %}
+            <a href="{{ path('add_offer') }}" class="badge badge-primary">Ajouter une offre</a>
+        {% endif %}
+
+        <br>
+        <br>
+        {% if app.user %}
+            <h2>Mes offres</h2>
+
+        {% else %}
+
+            <h2>Toutes les offres</h2>
+        {% endif %}
+
+
+        <table class="table table-sm table-dark">
+            <thead>
+            <tr>
+                {% if app.user %}
+                    <th scope="col">Mon Entreprise</th>
+                {% else %}
+
+                    <th scope="col">Entreprise</th>
+                {% endif %}
+
+                <th scope="col">Titre Annonce</th>
+                {% if app.user %}
+                    <th scope="col">Liste des candidats</th>
+                {% endif %}
+
+                <th scope="col">Détails de l'offre</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for offer in offers %}
+                {% if app.user %}
+                    {% if app.user.email == offer.getFkCompany.getFkUser.email  %}
+                        <tr>
+                            <th scope="row">{{ offer.getFkCompany.name}}</th>
+                            <td>{{ offer.title }}</td>
+                            {% if app.user %}
+                                <td><a href="{{ path('candidates', {'id':offer.id}) }}" class="badge badge-info">Liste</a></td>
+                            {% endif %}
+
+                            <td><a href="{{ path('show_offer', {'id': offer.id}) }}" class="badge badge-warning">Détail</a>
+                                {% if app.user %}
+                                    <a href="{{ path('edit_offer', {'id':offer.id}) }}" class="badge badge-secondary">Modifer offre</a>
+                                {% endif %}
+
+                                <a class="badge badge-danger" href="{{ path('delete_offer' , {'id':offer.id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce ?')"> Supprimer offre</a>
+                            </td>
+                        </tr>
+
+
+                    {% endif %}
+
+
+                {% elseif  app.user is null %}
+                    <tr>
+                        <th scope="row">{{ offer.getFkCompany.name}}</th>
+                        <td>{{ offer.title }}</td>
+                        {% if app.user %}
+                            <td><a href="{{ path('candidates', {'id':offer.id}) }}"  class="badge badge-info">Liste</a></td>
+                        {% endif %}
+
+                        <td><a href="{{ path('show_offer', {'id': offer.id}) }}" class="badge badge-warning">Détail</a>
+                            {% if app.user %}
+                                <a href="{{ path('edit_offer', {'id':offer.id}) }}" class="badge badge-secondary">Modifer offre</a>
+
+
+                                <a   class="badge badge-danger" href="{{ path('delete_offer' , {'id':offer.id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce ?')"> Supprimer offre</a>
+                            {% endif %}
+                            <a href="{{ path('apply', {'id': offer.id}) }}" class="badge badge-primary">Postuler</a></td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+{% endblock %}

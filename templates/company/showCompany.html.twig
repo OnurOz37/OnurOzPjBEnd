@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon Entreprise {% endblock %}
+
+
+{% block body %}
+
+    {% include 'partials/_flashes.html.twig' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+
+                                <form class="form-horizontal pull-right">
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Modifier
+                                </th>
+                                <th>Nom</th>
+                                <th>Ville</th>
+                                <th>Site Internet</th>
+                                <th>Téléphone</th>
+                                <th>
+                                    Liste des offres
+                                </th>
+                                <th>Logo</th>
+                                <th>Logo Background</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <ul class="action-list">
+                                        <li><a href="{{ path('edit_company', {'id':company.id}) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
+{#                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>#}
+                                    </ul>
+                                </td>
+                                <td>{{ company.name }}</td>
+                                <td>{{ company.city }}</td>
+                                <td>{{ company.website }}</td>
+                                <td>{{ company.phone }}</td>
+                                <td>
+
+                                            <a href="{{ path('my_offers') }}" class="badge badge-secondary">Liste</a>
+
+                                    </td>
+
+                                <td ><img src="{{ asset('/uploads/') ~ company.logo }}" alt="" class="company-logo"  style="background-color: {{company.logoColor}};"  ></td>
+                                <td style="background-color: {{company.logoColor}}; width: 10%; height: auto"></td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://use.fontawesome.com/13007f76c9.js"></script>
+
+
+
+{% endblock %}

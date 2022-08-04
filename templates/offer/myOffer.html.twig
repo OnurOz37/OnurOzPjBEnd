@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mes annonces{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container">
+        <a href="{{ path('add_offer') }}" class="badge badge-info">Ajouter une offre</a>
+
+        <br>
+
+        <h1>Mes annonces</h1>
+        {% for offer in offers %}
+
+            {% if app.user.id == offer.getFkCompany().getFkUser().id %}
+
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Plus de détails</th>
+                        <th scope="col">Liste des candidats</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ offer.title }}</th>
+                        <td><a href="{{ path('show_offer', {'id': offer.id}) }}" class="badge badge-warning">Détail</a></td>
+                        <td><a href="{{ path('candidates', {'id':offer.id}) }}" class="badge badge-warning">Candidatures</a></td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+
+
+
+
+
+            {% endif %}
+
+
+
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

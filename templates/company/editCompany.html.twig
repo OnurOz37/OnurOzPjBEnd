@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modifier l'entreprise {% endblock %}
+
+{% block body %}
+
+    {% include 'partials/_flashes.html.twig' %}
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+{#    <div>#}
+{#        <img src="{{ asset('/uploads/') ~ company.logo }}" alt="" class="company-logo">#}
+{#        {{ form_row(form.logo, {'label':'Changer le logo ? '}) }}#}
+{#    </div>#}
+
+    {{ form_row(form.city) }}
+    {{ form_row(form.website) }}
+    {{ form_row(form.phone) }}
+    {{ form_end(form) }}
+
+{% endblock %}
