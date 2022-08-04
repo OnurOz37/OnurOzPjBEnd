@@ -35,6 +35,7 @@ class Company
 
     /**
      * @Assert\NotBlank
+     * @Assert\Valid()
      */
     #[ORM\Column(type: 'string', length: 100)]
     private $name;
