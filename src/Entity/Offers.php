@@ -90,7 +90,7 @@ class Offers
     #[ORM\Column(type: 'string', length: 255)]
     private $role_content;
 
-    #[ORM\OneToMany(mappedBy: 'offers', targetEntity: Candidates::class)]
+    #[ORM\OneToMany(mappedBy: 'offers', targetEntity: Candidates::class, cascade: ['remove'])]
     private $fk_candidat;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'offers', cascade: ['persist'])]

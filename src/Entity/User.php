@@ -19,6 +19,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     /**
+     * @Assert\NotBlank (message="Veuillez saisir une valeur")
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email."
      * )
@@ -29,6 +30,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
+
+    /**
+     * @Assert\NotBlank (message="Veuillez saisir une valeur")
+     * @Assert\Regex (pattern="/^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/", message="Le mot de passe doit contenir au moins 1 majuscule, 1 miniscule, 1 chiffre 1 caractère spécial et une longueur de 10")
+     */
     #[ORM\Column(type: 'string')]
     private $password;
 
